@@ -1,8 +1,16 @@
-from flask import Flask 
+import requests
+import json
 
-if __name__ == '__main__':
+ENDPOINT_1 = 'http://localhost:8080/say/hi'
+ENDPOINT_2 = 'http://localhost:8080/say/hello'
 
-    app = Flask('Test API')
+name = 'Marco'
 
-    with app.app_context():
-        import api.listen
+response_1 = requests.post(ENDPOINT_1, json='')
+response_2 = requests.post(ENDPOINT_2, json=name)
+
+output_1 = json.loads(response_1.content)
+output_2 = json.loads(response_2.content)
+
+print(output_1)
+print(output_2)
