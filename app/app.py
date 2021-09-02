@@ -25,10 +25,11 @@ async def update_todo(id:int, body:dict) -> dict:
     for todo in todos:
         if int(todo['id']) == id:
             todo['activity'] = body['activity']
-            return {"data" : f"{id} has been updated correctly!"}
+            return {"data" : "Updated correctly!"}
 
     raise HTTPException(status_code=404, detail="Item not found!")
 
+# delete 
 @app.delete('/delete/{id}', tags=['TODOS'], status_code=200)
 async def delete_todo(id:int) -> dict:
 
@@ -37,7 +38,7 @@ async def delete_todo(id:int) -> dict:
             todos.remove(todo)
             return {'data' : "Deleted!"}
 
-    raise HTTPException(status_code=404, detail="Item not found")
+    raise HTTPException(status_code=404, detail="Item not found!")
 
 
 todos = [
