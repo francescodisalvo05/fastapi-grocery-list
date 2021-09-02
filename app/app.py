@@ -2,24 +2,24 @@ from fastapi import FastAPI, HTTPException
 
 app = FastAPI()
 
-# tags is the category
-@app.get("/", tags=['ROOT'])
-async def root() -> dict:
-    return {"Ping" : "Pong"}
-
 # get --> read
-@app.get('/todo', tags=['TODOS'])
+@app.get('/todo', tags=['TODOS'], status_code=200)
 async def get_todo() -> dict:
     return ({"data":todos})
 
 # post --> create
-@app.post('/create', tags=['TODOS'])
+@app.post('/create', tags=['TODOS'], status_code=201)
 async def add_todo(todo : dict) -> dict:
+
+    for temp_todo in todos:
+        if temp_todo['id'] == todo['id']:
+            raise HTTPException(status_code=400, detail="Item already present!")
+
     todos.append(todo)
     return {"data" : "Added correctly!"}
 
 # put --> update
-@app.put('/update', tags=['TODOS'])
+@app.put('/update', tags=['TODOS'], status_code=200)
 async def update_todo(id:int, body:dict) -> dict:
 
     for todo in todos:
@@ -27,9 +27,9 @@ async def update_todo(id:int, body:dict) -> dict:
             todo['activity'] = body['activity']
             return {"data" : f"{id} has been updated correctly!"}
 
-    return {"data" : "Not found!"}
+    raise HTTPException(status_code=404, detail="Item not found!")
 
-@app.delete('/delete/{id}', tags=['TODOS'])
+@app.delete('/delete/{id}', tags=['TODOS'], status_code=200)
 async def delete_todo(id:int) -> dict:
 
     for todo in todos:
@@ -37,7 +37,7 @@ async def delete_todo(id:int) -> dict:
             todos.remove(todo)
             return {'data' : "Deleted!"}
 
-    return {'data':"Not found!"}
+    raise HTTPException(status_code=404, detail="Item not found")
 
 
 todos = [
