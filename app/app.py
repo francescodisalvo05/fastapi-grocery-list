@@ -3,6 +3,13 @@ from fastapi import FastAPI, HTTPException
 app = FastAPI()
 
 
+@app.get('/', status_code=200)
+async def get_todo() -> dict:
+    """Greetings"""
+    return ({"Welcome":"Thank you for using our service!"})
+
+
+
 @app.get('/list', status_code=200)
 async def get_todo() -> dict:
     """Get the whole grocery list
@@ -32,7 +39,7 @@ async def add_item(item : dict) -> dict:
             raise HTTPException(status_code=400, detail="Item already present!")
 
     grocery_list.append(item)
-    return {"data" : "Added correctly!"}
+    return {"data" : f"{item['item']} added correctly!"}
 
 
 
@@ -59,8 +66,8 @@ async def update_todo(item_name:str, item_quantity:int) -> dict:
     raise HTTPException(status_code=404, detail=f"{item_name} not found!")
 
 # delete 
-@app.delete('/delete/{item_name}', tags=['TODOS'], status_code=200)
-async def delete_todo(item_name:int) -> dict:
+@app.delete('/delete/{item_name}',status_code=200)
+async def delete_todo(item_name:str) -> dict:
     """Delete item with a given iten_name
 
     Args:
