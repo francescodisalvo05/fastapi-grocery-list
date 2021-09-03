@@ -2,46 +2,84 @@ from fastapi import FastAPI, HTTPException
 
 app = FastAPI()
 
-# get --> read
-@app.get('/todo', tags=['TODOS'], status_code=200)
+
+@app.get('/list', status_code=200)
 async def get_todo() -> dict:
-    return ({"data":todos})
+    """Get the whole grocery list
+    
+    Return:
+        Dictionary containing the list of items under the key "data"
+    """
+    return ({"data":grocery_list})
 
-# post --> create
-@app.post('/create', tags=['TODOS'], status_code=201)
-async def add_todo(todo : dict) -> dict:
 
-    for temp_todo in todos:
-        if temp_todo['id'] == todo['id']:
+@app.post('/create', status_code=201)
+async def add_item(item : dict) -> dict:
+    """Create a new item to buy
+
+    Args:
+        item (dict): {"item" : str, "qty" : int}
+    
+    Return:
+        notification, code 201
+
+    Raises:
+        HTTPException 400, if the element is already present on the list
+    """
+
+    for temp_item in grocery_list:
+        if temp_item['item'] == item['item']:
             raise HTTPException(status_code=400, detail="Item already present!")
 
-    todos.append(todo)
+    grocery_list.append(item)
     return {"data" : "Added correctly!"}
 
-# put --> update
-@app.put('/update', tags=['TODOS'], status_code=200)
-async def update_todo(id:int, body:dict) -> dict:
 
-    for todo in todos:
-        if int(todo['id']) == id:
-            todo['activity'] = body['activity']
-            return {"data" : "Updated correctly!"}
 
-    raise HTTPException(status_code=404, detail="Item not found!")
+@app.put('/update', status_code=200)
+async def update_todo(item_name:str, item_quantity:int) -> dict:
+    """Update the quantity to buy for a given item
+
+    Args:
+        item_name (str) : name of the item to update
+        item_quantity (int) : quantity to update
+
+    Return:
+        notification, code 200
+
+    Raises:
+         HTTPException 404, if the item is not present on the list
+    """
+
+    for temp_item in grocery_list:
+        if temp_item['item'] == item_name:
+            temp_item['qty'] = item_quantity
+            return {"data" : f"{item_name} correctly updated!"}
+
+    raise HTTPException(status_code=404, detail=f"{item_name} not found!")
 
 # delete 
-@app.delete('/delete/{id}', tags=['TODOS'], status_code=200)
-async def delete_todo(id:int) -> dict:
+@app.delete('/delete/{item_name}', tags=['TODOS'], status_code=200)
+async def delete_todo(item_name:int) -> dict:
+    """Delete item with a given iten_name
 
-    for todo in todos:
-        if int(todo['id']) == id:
-            todos.remove(todo)
-            return {'data' : "Deleted!"}
+    Args:
+        item_name (str) : name of the item that must be removed
+    
+    Return:
+        notification, code 200
 
-    raise HTTPException(status_code=404, detail="Item not found!")
+    Raises:
+        HTTPException 404, if the item is not present on the list
+    """
+    for temp_item in grocery_list:
+        if temp_item['item'] == item_name:
+            grocery_list.remove(temp_item)
+            return {"data" : f"{item_name} correctly deleted!"}
 
+    raise HTTPException(status_code=404, detail=f"{item_name} not found!")
 
-todos = [
-    {"id" : 1, "activity" : "read"},
-    {"id" : 2, "activity" : "eat"}
+grocery_list = [
+    {"item" : "bread", "qty" : 1},
+    {"item" : "milk", "qty" : 2}
 ]
