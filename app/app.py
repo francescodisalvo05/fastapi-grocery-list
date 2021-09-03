@@ -4,14 +4,14 @@ app = FastAPI()
 
 
 @app.get('/', status_code=200)
-async def get_todo() -> dict:
+async def greetings() -> dict:
     """Greetings"""
     return {"Welcome":"Thank you for using our service!"}
 
 
 
 @app.get('/list', status_code=200)
-async def get_todo() -> dict:
+async def get_list() -> dict:
     """Gets the whole grocery list
     
     Returns:
@@ -44,7 +44,7 @@ async def add_item(item : dict) -> dict:
 
 
 @app.put('/update', status_code=200)
-async def update_todo(item_name:str, item_quantity:int) -> dict:
+async def update_item(item_name:str, item_quantity:int) -> dict:
     """Updates the quantity to buy for a given item
 
     Args:
@@ -67,7 +67,7 @@ async def update_todo(item_name:str, item_quantity:int) -> dict:
 
 # delete 
 @app.delete('/delete/{item_name}',status_code=200)
-async def delete_todo(item_name:str) -> dict:
+async def delete_item(item_name:str) -> dict:
     """Deletes item with a given iten_name
 
     Args:
