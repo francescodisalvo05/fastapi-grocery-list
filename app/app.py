@@ -12,9 +12,9 @@ async def get_todo() -> dict:
 
 @app.get('/list', status_code=200)
 async def get_todo() -> dict:
-    """Get the whole grocery list
+    """Gets the whole grocery list
     
-    Return:
+    Returns:
         Dictionary containing the list of items under the key "data"
     """
     return ({"data":grocery_list})
@@ -22,12 +22,12 @@ async def get_todo() -> dict:
 
 @app.post('/create', status_code=201)
 async def add_item(item : dict) -> dict:
-    """Create a new item to buy
+    """Creates a new item to buy
 
     Args:
         item (dict): {"item" : str, "qty" : int}
     
-    Return:
+    Returns:
         notification, code 201
 
     Raises:
@@ -45,13 +45,13 @@ async def add_item(item : dict) -> dict:
 
 @app.put('/update', status_code=200)
 async def update_todo(item_name:str, item_quantity:int) -> dict:
-    """Update the quantity to buy for a given item
+    """Updates the quantity to buy for a given item
 
     Args:
         item_name (str) : name of the item to update
         item_quantity (int) : quantity to update
 
-    Return:
+    Returns:
         notification, code 200
 
     Raises:
@@ -68,12 +68,12 @@ async def update_todo(item_name:str, item_quantity:int) -> dict:
 # delete 
 @app.delete('/delete/{item_name}',status_code=200)
 async def delete_todo(item_name:str) -> dict:
-    """Delete item with a given iten_name
+    """Deletes item with a given iten_name
 
     Args:
         item_name (str) : name of the item that must be removed
     
-    Return:
+    Returns:
         notification, code 200
 
     Raises:
