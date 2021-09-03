@@ -6,7 +6,7 @@ app = FastAPI()
 @app.get('/', status_code=200)
 async def get_todo() -> dict:
     """Greetings"""
-    return ({"Welcome":"Thank you for using our service!"})
+    return {"Welcome":"Thank you for using our service!"}
 
 
 
@@ -17,7 +17,7 @@ async def get_todo() -> dict:
     Returns:
         Dictionary containing the list of items under the key "data"
     """
-    return ({"data":grocery_list})
+    return {"data":grocery_list}
 
 
 @app.post('/create', status_code=201)
@@ -36,7 +36,7 @@ async def add_item(item : dict) -> dict:
 
     for temp_item in grocery_list:
         if temp_item['item'] == item['item']:
-            raise HTTPException(status_code=400, detail="Item already present!")
+            raise HTTPException(status_code=400, detail= f"{item['item']} already present!")
 
     grocery_list.append(item)
     return {"data" : f"{item['item']} added correctly!"}
