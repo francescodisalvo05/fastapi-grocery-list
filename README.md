@@ -1,2 +1,2 @@
-# flask-api
-Local server with Flask
+# Fast API
+Local server with FastAPI
