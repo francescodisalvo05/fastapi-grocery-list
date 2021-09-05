@@ -6,13 +6,12 @@
 </p>
 
 ### Contents
-- [How to run it](#howtorun)
-- [How to test](#test)
+- [How to run](#howtorun)
+- [How to test](#howtotest)
 - [How to contribute](#howtocontribute)
+- [How to reach me out](#howtoreachmeout)
 
 ------------------------
-
-<a name="description"/>
 
 Hi folks! This repository was initially used by me for learning the basics of FastAPI. Then, I realized how cool it was and I decided to do something more structured that may be helpful for someone else! Notice that there is no database (yet) but it simply works with an initial python dictionary. In this simple experiment I just focused on the CRUD operations (Create, Read, Update, Delete), but there is much room for improvement. 
 
@@ -49,7 +48,7 @@ python3 main.py
 
 <br />
 
-<a name="test"/>
+<a name="howtotest"/>
 
 ## How to test
 ```
@@ -69,5 +68,13 @@ pytest
 1. Fork the repository
 2. Do the desired changes
 3. Make a pull request
+
+<br />
+
+<a name="howtoreachmeout"/>
+
+## How to reach me out
+* [![Linkedin](https://img.shields.io/badge/-LinkedIn-blue?style=flat&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/francescodisalvo-pa/)
+* [`francesco.disalvo99@gmail.com`](mailto:francesco.disalvo99@gmail.com)
 
 
