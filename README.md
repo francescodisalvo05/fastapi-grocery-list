@@ -28,7 +28,7 @@ mkdir grocery-list
 cd grocery-list
 python -m venv ./venv
 source venv/bin/activate
-pip install --upgrade pip
+pip3 install --upgrade pip
 ```
 1. Clone the repository and move it to the downloaded directory
 ```
