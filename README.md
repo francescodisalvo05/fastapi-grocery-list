@@ -14,7 +14,7 @@
 
 <a name="description"/>
 
-Hi folks! This repository was initially used by me for learning the basics of FastAPI. Then, I realized how cool it was and I decided to do something more structured that may be helpful for someone else!
+Hi folks! This repository was initially used by me for learning the basics of FastAPI. Then, I realized how cool it was and I decided to do something more structured that may be helpful for someone else! Notice that there is no database (yet) but it simply works with an initial python dictionary. In this simple experiment I just focused on the CRUD operations (Create, Read, Update, Delete), but there is much room for improvement. 
 
 ___________________
 <br />
