@@ -1,6 +1,13 @@
 from fastapi import FastAPI, HTTPException
 
+
 app = FastAPI()
+
+
+grocery_list = [
+    {"item" : "bread", "qty" : 1},
+    {"item" : "milk", "qty" : 2}
+]
 
 
 @app.get('/', status_code=200)
@@ -9,23 +16,12 @@ async def greetings() -> dict:
     return {"Welcome":"Thank you for using our service!"}
 
 
-
-@app.get('/list', status_code=200)
-async def get_list() -> dict:
-    """Gets the whole grocery list
-    
-    Returns:
-        Dictionary containing the list of items under the key "data"
-    """
-    return {"data":grocery_list}
-
-
 @app.post('/create', status_code=201)
 async def add_item(item : dict) -> dict:
     """Creates a new item to buy
 
     Args:
-        item (dict): {"item" : str, "qty" : int}
+        item (dict): {"item" : (str), "qty" : (int)}
     
     Returns:
         notification, code 201
@@ -39,8 +35,18 @@ async def add_item(item : dict) -> dict:
             raise HTTPException(status_code=400, detail= f"{item['item']} already present!")
 
     grocery_list.append(item)
+    
     return {"data" : f"{item['item']} added correctly!"}
 
+
+@app.get('/list', status_code=200)
+async def get_list() -> dict:
+    """Gets the whole grocery list
+    
+    Returns:
+        Dictionary containing the list of items under the key "data"
+    """
+    return {"data":grocery_list}
 
 
 @app.put('/update', status_code=200)
@@ -65,7 +71,7 @@ async def update_item(item_name:str, item_quantity:int) -> dict:
 
     raise HTTPException(status_code=404, detail=f"{item_name} not found!")
 
-# delete 
+ 
 @app.delete('/delete/{item_name}',status_code=200)
 async def delete_item(item_name:str) -> dict:
     """Deletes item with a given iten_name
@@ -85,8 +91,3 @@ async def delete_item(item_name:str) -> dict:
             return {"data" : f"{item_name} correctly deleted!"}
 
     raise HTTPException(status_code=404, detail=f"{item_name} not found!")
-
-grocery_list = [
-    {"item" : "bread", "qty" : 1},
-    {"item" : "milk", "qty" : 2}
-]
