@@ -24,7 +24,7 @@ ___________________
 0. Clone the repository and move it to the downloaded directory
 ```
 git clone https://github.com/francescodisalvo05/fastapi-grocery-list.git
-cd grocery-list
+cd fastapi-grocery-list
 ```
 1. Create a new folder virtual environment and activate it
 ```
@@ -34,7 +34,7 @@ pip3 install --upgrade pip
 ```
 2. Install the requirements
 ```
-pip3 install requirements.txt
+pip3 install -r requirements.txt
 ```
 3. Run the local server
 ```
