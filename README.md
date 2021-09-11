@@ -21,23 +21,21 @@ ___________________
 <a name="howtorun"/>
 
 ## How to run
-0. Create a new folder and virtual environment
-```
-mkdir grocery-list
-cd grocery-list
-python -m venv ./venv
-source venv/bin/activate
-pip3 install --upgrade pip
-```
-1. Clone the repository and move it to the downloaded directory
+0. Clone the repository and move it to the downloaded directory
 ```
 git clone https://github.com/francescodisalvo05/fastapi-grocery-list.git
+cd grocery-list
+```
+1. Create a new folder virtual environment and activate it
+```
+python3 -m venv ./venv
+source venv/bin/activate
+pip3 install --upgrade pip
 ```
 2. Install the requirements
 ```
 pip3 install requirements.txt
 ```
-
 3. Run the local server
 ```
 python3 main.py
