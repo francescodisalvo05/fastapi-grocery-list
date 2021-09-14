@@ -5,6 +5,8 @@
   Photo by <a href="https://unsplash.com/@mrsmaria?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Maria Lin Kim</a> on <a href="https://unsplash.com/s/photos/grocery-list?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </p>
 
+If you have some doubts, check out the [medium](https://medium.com/@francesco.disalvo/fast-api-how-to-build-a-grocery-list-ee51d65f5bf2) article!
+
 ### Contents
 - [How to run](#howtorun)
 - [How to test](#howtotest)
